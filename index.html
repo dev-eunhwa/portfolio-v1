@@ -555,19 +555,85 @@ function projLoadImage(pid, input) {
     slot.style.opacity = '1';
     const img = document.createElement('img');
     img.src = e.target.result;
-    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;';
-    img.onclick = (ev) => { ev.stopPropagation(); projLightbox(img.src); };
+    img.style.cssText = 'position:absolute;top:0;left:0;height:100%;width:auto;display:block;border-radius:4px;cursor:grab;user-select:none;';
+    img.dataset.offsetX = '0';
+    // 이미지 로드 후 초기 위치 왼쪽 정렬
+    img.onload = () => { img.style.left = '0px'; };
+    // 좌우 드래그로 위치 조절
+    img.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault(); e.stopPropagation();
+      const startX = e.clientX;
+      const startOffset = parseFloat(img.dataset.offsetX) || 0;
+      img.style.cursor = 'grabbing';
+      let moved = false;
+      const onMove = (e) => {
+        moved = true;
+        const slotW = img.parentElement.offsetWidth;
+        const imgW = img.offsetWidth;
+        const maxOffset = 0;
+        const minOffset = Math.min(0, slotW - imgW);
+        const nx = Math.max(minOffset, Math.min(maxOffset, startOffset + (e.clientX - startX)));
+        img.dataset.offsetX = nx;
+        img.style.left = nx + 'px';
+      };
+      const onUp = () => {
+        img.style.cursor = 'grab';
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        if (moved) savePortfolioHTML();
+      };
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+    // 클릭(드래그 아닐 때)은 라이트박스
+    img.addEventListener('click', (ev) => { ev.stopPropagation(); projLightbox(img.src); });
     const del = document.createElement('button');
     del.textContent = '×';
     del.style.cssText = 'position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;color:#fff;font-size:11px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;';
-    del.onclick = (ev) => { ev.stopPropagation(); projClearSlot(pid, idx); };
+    del.onclick = (ev) => { ev.stopPropagation(); projClearSlotAndSave(pid, idx); };
     slot.appendChild(img);
     slot.appendChild(del);
+    // 리사이즈 핸들 재부착
+    slot.dataset.resizeInit = '';
+    initSlotResize();
     projUpdateCount(pid);
     projRefreshSlots(pid);
+    // 이미지 삽입 후 자동 저장
+    savePortfolioHTML();
   };
   reader.readAsDataURL(input.files[0]);
   input.value = '';
+}
+
+function projClearSlotAndSave(pid, idx) {
+  projClearSlot(pid, idx);
+  savePortfolioHTML();
+}
+
+function savePortfolioHTML() {
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  fetch('/__save__', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ html })
+  }).then(r => {
+    if (r.ok) showSaveToast('💾 저장됨');
+  }).catch(() => showSaveToast('⚠️ 저장 실패'));
+}
+
+function showSaveToast(msg) {
+  let t = document.getElementById('save-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'save-toast';
+    t.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#2D3561;color:#fff;font-size:12px;padding:8px 16px;border-radius:6px;z-index:99999;opacity:0;transition:opacity 0.3s;pointer-events:none;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.style.opacity = '0', 2000);
 }
 
 function projClearSlot(pid, idx) {
@@ -626,6 +692,44 @@ function projLightbox(src) {
   document.getElementById('proj-lb-img').src = src;
   lb.style.display = 'flex';
 }
+
+// ── 슬롯 리사이즈 핸들 초기화 ──
+function initSlotResize() {
+  ['proj01','proj02','proj03','proj04'].forEach(pid => {
+    for (let i = 0; i < 3; i++) {
+      const slot = document.getElementById(pid + '-slot-' + i);
+      if (!slot || slot.dataset.resizeInit) continue;
+      slot.dataset.resizeInit = '1';
+      // 핸들 생성
+      const handle = document.createElement('div');
+      handle.style.cssText = 'position:absolute;bottom:0;right:0;width:18px;height:18px;cursor:nwse-resize;z-index:20;display:flex;align-items:flex-end;justify-content:flex-end;padding:3px;background:rgba(0,0,0,0.25);border-radius:3px 0 4px 0;';
+      handle.innerHTML = '<svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 7 L7 1 M4 7 L7 4 M7 7 L7 7" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" stroke-linecap="round"/></svg>';
+      slot.appendChild(handle);
+      // 드래그 리사이즈
+      handle.addEventListener('mousedown', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const startX = e.clientX, startY = e.clientY;
+        const startW = slot.offsetWidth, startH = slot.offsetHeight;
+        const area = slot.parentElement;
+        const onMove = (e) => {
+          const newW = Math.max(80, startW + (e.clientX - startX));
+          const newH = Math.max(60, startH + (e.clientY - startY));
+          slot.style.flex = '0 0 ' + newW + 'px';
+          slot.style.width = newW + 'px';
+          area.style.height = newH + 'px';
+        };
+        const onUp = () => {
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onUp);
+          savePortfolioHTML();
+        };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+      });
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', initSlotResize);
 </script>
 
 <!-- ═══════════════════════════════════════════
