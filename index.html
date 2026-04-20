@@ -682,14 +682,16 @@ function projLightbox(src) {
     lb = document.createElement('div');
     lb.id = 'proj-lb';
     lb.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
-    lb.onclick = () => lb.style.display = 'none';
     const lbImg = document.createElement('img');
     lbImg.id = 'proj-lb-img';
     lbImg.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.6);';
     lb.appendChild(lbImg);
     document.body.appendChild(lb);
   }
-  document.getElementById('proj-lb-img').src = src;
+  // 재로드 후에도 항상 �핸들러 재연결
+  lb.onclick = () => lb.style.display = 'none';
+  const lbImg = document.getElementById('proj-lb-img');
+  if (lbImg) lbImg.src = src;
   lb.style.display = 'flex';
 }
 
