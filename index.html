@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<title>조은화 포트폴리오</title>
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --beige: #C8BAA8;
+    --blue: #5B6FA6;
+    --navy: #2D3561;
+    --white: #FFFFFF;
+    --text-muted: #8A96AA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px;
+  }
+
+  /* ─── SLIDE SHELL ─── */
+  .slide {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .slide-label {
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 2px;
+    align-self: flex-start;
+    margin-left: 4px;
+    margin-bottom: -8px;
+  }
+
+  /* ─── COMMON ELEMENTS ─── */
+  .eye { font-size: 10px; letter-spacing: 4px; color: var(--beige); text-transform: uppercase; margin-bottom: 6px; }
+  .eye-blue { font-size: 10px; letter-spacing: 4px; color: var(--blue); text-transform: uppercase; margin-bottom: 6px; }
+  .stitle { font-size: 28px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 28px; }
+  .stitle-w { font-size: 28px; font-weight: 900; color: var(--white); letter-spacing: -0.5px; margin-bottom: 28px; }
+  .label-tag {
+    font-size: 9px; letter-spacing: 2px; color: var(--white);
+    background: var(--blue); padding: 2px 8px; border-radius: 2px;
+    display: inline-block; text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────────────
+     SLIDE 01  HERO / PROFILE
+  ───────────────────────────────────────── */
+  .s-hero {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    height: 720px;
+  }
+  .hero-left {
+    padding: 56px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 4px; color: var(--beige); text-transform: uppercase; margin-bottom: 20px; opacity: 0.7; }
+  .hero-name { font-size: 54px; font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -2px; margin-bottom: 20px; }
+  .hero-name em { color: var(--blue); font-style: normal; }
+  .hero-slogan { font-size: 17px; color: var(--beige); line-height: 1.8; opacity: 0.85; margin-bottom: 28px; max-width: 580px; }
+  .hero-contact { display: flex; gap: 24px; }
+  .hero-contact .item { font-size: 15px; color: var(--beige); opacity: 0.6; }
+  .hero-contact .item strong { color: var(--beige); opacity: 1; margin-right: 6px; font-size: 10px; letter-spacing: 1px; }
+  .hero-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; display: flex; gap: 0; }
+  .hero-stat { flex: 1; padding-right: 24px; border-right: 1px solid rgba(255,255,255,0.07); margin-right: 24px; }
+  .hero-stat:last-child { border-right: none; margin-right: 0; }
+  .hero-stat .n { font-size: 28px; font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; }
+  .hero-stat .n em { color: var(--blue); font-style: normal; font-size: 14px; }
+  .hero-stat .l { font-size: 10px; color: var(--beige); opacity: 0.5; margin-top: 4px; letter-spacing: 1px; }
+  .hero-right {
+    background: rgba(255,255,255,0.03);
+    border-left: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 10px;
+  }
+  .info-card { padding: 16px 20px; background: rgba(255,255,255,0.05); border-radius: 3px; flex: 1; display: flex; flex-direction: column; }
+  .info-card .lbl { font-size: 9px; letter-spacing: 3px; color: var(--beige); opacity: 0.7; margin-bottom: 10px; text-transform: uppercase; }
+  .info-card .val { font-size: 14px; color: var(--white); line-height: 1.75; }
+  .info-card .domain-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .domain-pill { font-size: 12px; border: 1px solid rgba(91,111,166,0.6); color: #8BA4D8; padding: 4px 10px; border-radius: 2px; }
+
+  /* 경력 타임라인 */
+  .career-timeline { display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 20px; margin-top: 2px; flex: 1; justify-content: space-between; }
+  .career-timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: rgba(91,111,166,0.35); }
+  .tl-item { position: relative; padding-bottom: 16px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ''; position: absolute; left: -16px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2px rgba(91,111,166,0.3); }
+  .tl-company { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 3px; line-height: 1.3; }
+  .tl-period { font-size: 11px; color: var(--beige); opacity: 0.75; margin-bottom: 3px; }
+  .tl-role { font-size: 11px; color: var(--beige); opacity: 0.85; }
+  .tl-domain { display: inline-block; font-size: 10px; letter-spacing: 1px; border: 1px solid rgba(91,111,166,0.5); color: #8BA4D8; padding: 2px 7px; border-radius: 2px; margin-bottom: 5px; }
+
+  /* ─────────────────────────────────────────
+     SLIDE 02  핵심 역량
+  ───────────────────────────────────────── */
+  .s-comp {
+    background: var(--white);
+    padding: 48px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .comp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; flex: 1; }
+  .comp-card {
+    background: var(--cream);
+    border-left: 4px solid var(--blue);
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .comp-card .cn { font-size: 11px; letter-spacing: 3px; color: var(--blue); font-weight: 700; }
+  .comp-card .ct { font-size: 17px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+  .comp-card .cd { font-size: 15px; color: #5A6270; line-height: 1.75; }
+  .tools-row { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--cream); display: flex; align-items: center; gap: 12px; }
+  .tools-row .tl { font-size: 10px; letter-spacing: 2px; color: var(--text-muted); flex-shrink: 0; }
+  .tools-row .tw { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tool-pill { font-size: 11px; border: 1px solid var(--beige); color: var(--navy); padding: 3px 10px; border-radius: 12px; }
+
+  /* ─────────────────────────────────────────
+     SLIDE 03  경력 (3개 회사 통합)
+  ───────────────────────────────────────── */
+  .s-career-all {
+    background: var(--cream);
+    padding: 36px 50px 32px;
+    display: flex;
+    flex-direction: column;
+  }
+  .career-cols {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr;
+    gap: 24px;
+    flex: 1;
+    margin-top: 6px;
+  }
+  .vdivider { background: var(--beige); align-self: stretch; opacity: 0.5; }
+  .career-col { display: flex; flex-direction: column; min-width: 0; }
+  .cc-head { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--beige); }
+  .cc-company { font-size: 20px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 3px; }
+  .cc-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 3px; line-height: 1.5; }
+  .cc-pos { font-size: 12px; color: var(--navy); opacity: 0.7; }
+  .cc-intro { font-size: 12px; color: #5A6270; line-height: 1.65; background: var(--white); padding: 9px 12px; border-radius: 2px; margin-bottom: 10px; }
+  .cc-intro strong { color: var(--navy); font-size: 10px; letter-spacing: 2px; margin-right: 6px; }
+  .cc-items { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+  .cc-item { background: var(--white); padding: 9px 12px; border-radius: 2px; }
+  .cc-item .cin { font-size: 10px; letter-spacing: 2px; color: var(--blue); margin-bottom: 4px; font-weight: 700; }
+  .cc-item .cit { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px; line-height: 1.35; }
+  .cc-item ul { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+  .cc-item ul li { font-size: 12px; color: #5A6270; padding-left: 10px; position: relative; line-height: 1.55; }
+  .cc-item ul li::before { content: ''; position: absolute; left: 0; top: 6px; width: 3px; height: 3px; border-radius: 50%; background: var(--blue); }
+  .cc-extra { background: rgba(91,111,166,0.08); padding: 8px 12px; border-radius: 2px; margin-top: 7px; }
+  .cc-extra .cel { font-size: 10px; letter-spacing: 2px; color: var(--blue); margin-bottom: 3px; }
+  .cc-extra p { font-size: 12px; color: var(--navy); line-height: 1.55; }
+
+  /* ─────────────────────────────────────────
+     SLIDE 05~08  프로젝트 공통
+  ───────────────────────────────────────── */
+  .s-project {
+    background: var(--navy);
+    padding: 28px 60px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .proj-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .proj-tag-badge { font-size: 11px; letter-spacing: 3px; color: var(--blue); font-weight: 700; }
+  .proj-title-main { font-size: 20px; font-weight: 900; color: var(--white); letter-spacing: -0.5px; flex: 1; }
+  .proj-period-badge { font-size: 13px; color: var(--beige); opacity: 0.5; flex-shrink: 0; }
+  .proj-body { display: grid; grid-template-columns: 320px 1fr; gap: 20px; flex: 1; }
+  .proj-left { display: flex; flex-direction: column; gap: 8px; }
+  .proj-right { display: flex; flex-direction: column; gap: 8px; }
+  .proj-metric-box {
+    background: var(--blue);
+    border-radius: 4px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .proj-metric-box .pm-label { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.6); text-transform: uppercase; }
+  .proj-metric-box .pm-num { font-size: 32px; font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; }
+  .proj-metric-box .pm-desc { font-size: 12px; color: rgba(255,255,255,0.7); }
+  .proj-field { background: rgba(255,255,255,0.04); border-radius: 3px; padding: 8px 12px; }
+  .proj-field .pf-label { font-size: 10px; letter-spacing: 2px; color: var(--blue); opacity: 0.9; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+  .proj-field .pf-text { font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+  .proj-field .pf-text a { color: var(--blue); }
+  .proj-ref { background: rgba(91,111,166,0.15); border-radius: 3px; padding: 10px 14px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .proj-ref .pf-label { font-size: 10px; letter-spacing: 2px; color: var(--blue); opacity: 0.9; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+  .proj-ref .pf-text { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.6; word-break: break-all; }
+
+  /* ─────────────────────────────────────────
+     SLIDE 09  제품 철학
+  ───────────────────────────────────────── */
+  .s-phil {
+    background: var(--white);
+    padding: 48px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .phil-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; flex: 1; }
+  .phil-card {
+    background: var(--cream);
+    padding: 22px 26px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 3px solid var(--blue);
+  }
+  .phil-card .pn { font-size: 9px; letter-spacing: 3px; color: var(--blue); font-weight: 700; }
+  .phil-card .pt { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .phil-card .pd { font-size: 12px; color: #5A6270; line-height: 1.75; }
+
+  /* ─────────────────────────────────────────
+     SLIDE 10  마무리 + Contact
+  ───────────────────────────────────────── */
+  .s-closing {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1px 360px;
+    gap: 56px;
+    padding: 56px 60px;
+    align-items: center;
+  }
+  .closing-left { display: flex; flex-direction: column; justify-content: center; }
+  .closing-eye { font-size: 10px; letter-spacing: 4px; color: var(--blue); text-transform: uppercase; margin-bottom: 20px; }
+  .closing-text { font-size: 14px; color: var(--beige); line-height: 1.9; opacity: 0.85; }
+  .closing-divider { background: rgba(255,255,255,0.07); align-self: stretch; }
+  .closing-right { display: flex; flex-direction: column; gap: 16px; }
+  .closing-right .eye { margin-bottom: 4px; }
+  .contact-item { padding: 14px 18px; background: rgba(255,255,255,0.04); border-radius: 3px; }
+  .contact-item .cl { font-size: 9px; letter-spacing: 3px; color: var(--beige); opacity: 0.5; margin-bottom: 5px; text-transform: uppercase; }
+  .contact-item .cv { font-size: 14px; color: var(--white); font-weight: 600; }
+  .tools-section { margin-top: 8px; }
+  .tools-section .tl { font-size: 9px; letter-spacing: 2px; color: var(--beige); opacity: 0.5; margin-bottom: 8px; text-transform: uppercase; }
+  .tools-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+  .t-pill { border: 1px solid rgba(91,111,166,0.4); color: var(--beige); font-size: 11px; padding: 4px 10px; border-radius: 12px; opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 01  HERO / PROFILE
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 01 — PROFILE</span>
+<div class="slide s-hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-eyebrow" style="">Product Owner · Project Manager · IT 서비스기획자</div>
+      <div class="hero-name" style="">비즈니스 문제의<br>본질을 파악하는<br><em style="">PO 조은화</em></div>
+      <div class="hero-slogan" style="overflow: hidden; max-width: none; min-width: 0px; width: 624px; height: 91.7812px;">비즈니스 문제의 본질을 파악하고,&nbsp;<br>최적의 방법과 크로스 기능 팀(Cross-functional Team) 간의&nbsp;&nbsp;협업 오케스트레이션을 통해<br>문제를 해결하는 PO 조은화입니다.</div>
+      <div class="hero-contact">
+        <div class="item" style=""><strong style="">E-MAIL</strong>blueeunhwa@gmail.com</div>
+        <div class="item" style=""><strong style="">TEL</strong>010-3443-3830</div>
+        <div class="item" style=""><strong style="">CAREER</strong>총 11년 3개월</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="info-card">
+      <div class="lbl" style="">경력 도메인</div>
+      <div class="domain-row">
+        <span class="domain-pill" style="">PropTech</span>
+        <span class="domain-pill" style="">Co-working Space</span>
+        <span class="domain-pill" style="">Fashion Tech</span>
+        <span class="domain-pill" style="">E-Commerce</span>
+        <span class="domain-pill" style="">EdTech</span>
+        <span class="domain-pill" style="">e-Learning</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="lbl" style="">경력</div>
+      <div class="career-timeline">
+        <div class="tl-item">
+          <span class="tl-domain" style="">PropTech</span>
+          <div class="tl-company" style="">(주) 스파크플러스</div>
+          <div class="tl-period" style="">2023.04 — 2026.02 · 2년 10개월</div>
+          <div class="tl-role" style="">고객사업부 고객PO팀 · 메인 PO</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-domain" style="">Fashion Tech</span>
+          <div class="tl-company" style="">(주) 브랜디</div>
+          <div class="tl-period" style="">2019.07 — 2023.02 · 3년 7개월</div>
+          <div class="tl-role" style="">LABs PM실 서비스PM팀 · PM</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-domain" style="">EdTech</span>
+          <div class="tl-company" style="">(주) fn이노에듀</div>
+          <div class="tl-period" style="">2014.09 — 2019.03 · 4년 6개월</div>
+          <div class="tl-role" style="">교육운영팀 · 서비스기획</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-card" style="flex:0; flex-shrink:0;">
+      <div class="lbl" style="">Tools &amp; Skills</div>
+      <div class="val" style="">Figma / Notion / Jira / Google Analytics<br>Amplitude / Slack / Jandi / Claude AI 등</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 02  핵심 역량
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 02 — 핵심 역량</span>
+<div class="slide s-comp">
+  <div class="eye-blue" style="">Competency</div>
+  <div class="stitle" style="">핵심 역량</div>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <div class="cn" style="">COMPETENCY 01</div>
+      <div class="ct" style="">비즈니스 임팩트 중심의 제품 전략 및 로드맵 설계</div>
+      <div class="cd" style="">비즈니스 생애주기에 따라 프로젝트의 로드맵을 제시하며, 비즈니스 임팩트와 고객가치 실현을 우선으로한 제품 전략을 수립합니다.</div>
+    </div>
+    <div class="comp-card">
+      <div class="cn" style="">COMPETENCY 02</div>
+      <div class="ct" style="">비즈니스에 최적화된 확장적 사고와 기획/설계</div>
+      <div class="cd" style="">비즈니스가 지향하는 궁극적인 목표를 align하고, 유연한 확장이 가능한 구조설계 및 기획을 진행합니다.</div>
+    </div>
+    <div class="comp-card">
+      <div class="cn" style="">COMPETENCY 03</div>
+      <div class="ct" style="">목표달성을 위한 다양한 문제해결력</div>
+      <div class="cd" style="">목표달성을 위한 다양한 수단(Tool, Data, 프로세스 개선)을 활용하고, 이해관계자와의 조율을 통해 본질에 집중한 문제를 해결합니다.</div>
+    </div>
+    <div class="comp-card">
+      <div class="cn" style="">COMPETENCY 04</div>
+      <div class="ct" style="">크로스펑셔널 협업 리더십</div>
+      <div class="cd" style="">개발·디자인·재무·영업·운영 등 다양한 직군의 소통을 리딩하며, 비즈니스 전반에 걸친 업무 프로세스 효율화를 주도합니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 03  경력 — 전체 경력 통합
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 03 — 경력 / 스파크플러스 · 브랜디 · fn이노에듀</span>
+<div class="slide s-career-all">
+  <div class="eye-blue" style="">Career</div>
+  <div class="career-cols">
+
+    <!-- 스파크플러스 -->
+    <div class="career-col">
+      <div class="cc-head">
+        <div class="cc-company" style="">(주) 스파크플러스</div>
+        <div class="cc-meta" style="">2023.04 — 2026.02 &nbsp;·&nbsp; 2년 10개월<br>PropTech · Co-working Space</div>
+        <div class="cc-pos" style="">고객사업부 고객PO팀 · 팀원 (메인 PO)</div>
+      </div>
+      <div class="cc-intro" style="">
+        <strong style="">ABOUT</strong>국내 대표 공유오피스 기업으로 중소오피스 임대사업, 공간 운영 관리, 빌딩자산 관리 시스템(SaaS) 서비스 운영.
+      </div>
+      <div class="cc-items">
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 01</div>
+          <div class="cit" style="">신규 브랜드 구축</div>
+          <ul><li style="">중소 임대 오피스 브랜드 '오피스B' 론칭</li></ul>
+        </div>
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 02</div>
+          <div class="cit" style="">비임대 수익원 확장</div>
+          <ul><li style="">B2C 상품(라운지패스, 공간대여) 고도화 및 입주사 전용 멤버십몰 구축</li></ul>
+        </div>
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 03</div>
+          <div class="cit" style="">운영 프로세스 최적화</div>
+          <ul><li style="">오피스 관리(계약/상품 등) 및 정산 업무 효율화를 위한 시스템 개선 및 유지보수</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="vdivider"></div>
+
+    <!-- 브랜디 -->
+    <div class="career-col">
+      <div class="cc-head">
+        <div class="cc-company" style="">(주) 브랜디</div>
+        <div class="cc-meta" style="">2019.07 — 2023.02 &nbsp;·&nbsp; 3년 7개월<br>Fashion Tech · E-Commerce</div>
+        <div class="cc-pos" style="">LABs PM실 서비스PM팀 · 팀원 (PM)</div>
+      </div>
+      <div class="cc-intro" style="">
+        <strong style="">ABOUT</strong>동대문 기반 모바일 패션 커머스 플랫폼 회사로 브랜디·하이버·마미·헬피 등 버티컬 커머스 운영.
+      </div>
+      <div class="cc-items">
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 01</div>
+          <div class="cit" style="">이커머스 백오피스 구축 및 유지보수</div>
+          <ul><li style="">브랜디, 하이버의 상품, 주문, 클레임 전반의 백오피스 관리</li><li style="">신규 앱(마미) 론칭에 따른 백오피스 설계 및 관리</li></ul>
+        </div>
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 02</div>
+          <div class="cit" style="">자체 물류시스템 연동 관리 및 유지보수</div>
+          <ul><li style="">FMS(자체물류시스템)과 브랜디 간 주문 연동 관리</li></ul>
+        </div>
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 03</div>
+          <div class="cit" style="">3rd Party 신규 연동 및 관리</div>
+          <ul><li style="">리뷰 관리 솔루션, 상품 연동 솔루션, 주문/재고관리 솔루션, 배송추적 솔루션 등</li></ul>
+        </div>
+        <div class="cc-extra">
+          <div class="cel" style="">기타</div>
+          <p style="">백오피스 기획 파트장 역임 (2021.11 ~ 2022.04)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="vdivider"></div>
+
+    <!-- fn이노에듀 -->
+    <div class="career-col">
+      <div class="cc-head">
+        <div class="cc-company" style="">(주) fn이노에듀</div>
+        <div class="cc-meta" style="">2014.09 — 2019.03 &nbsp;·&nbsp; 4년 6개월<br>EdTech · e-Learning</div>
+        <div class="cc-pos" style="">교육운영팀 · 팀원 (서비스기획)</div>
+      </div>
+      <div class="cc-intro" style="">
+        <strong style="">ABOUT</strong>파이낸셜뉴스그룹 계열 종합 교육서비스 기업으로 기업 직무·법정필수교육, 학점은행제를 자체 LMS로 운영하는 e-Learning 솔루션 제공.
+      </div>
+      <div class="cc-items">
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 01</div>
+          <div class="cit" style="">신규 플랫폼 구축</div>
+          <ul><li style="">학점은행제 전용 앱 및 운영 시스템(교강사·조교용 웹) 기획 및 프로젝트 일정 관리</li></ul>
+        </div>
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 02</div>
+          <div class="cit" style="">외주 개발사 매니지먼트(PM)</div>
+          <ul><li style="">외주 파트너사 선정 및 협업 관리, 요구사항 정의 및 개발 일정/품질 관리</li></ul>
+        </div>
+        <div class="cc-item">
+          <div class="cin" style="">주요 업력 03</div>
+          <div class="cit" style="">운영 프로세스 효율화 및 자동화</div>
+          <ul><li style="">환불 프로세스 개선, 상대평가 설계, 자동 학습독려 시스템 기획 등을 통한 운영 리소스 최소화</li></ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 05  PROJECT 01 — 오피스B
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 05 — PROJECT 01 / 오피스B</span>
+<div class="slide s-project">
+  <div class="proj-header">
+    <span class="proj-tag-badge" style="">PROJECT 01 · 스파크플러스</span>
+    <span class="proj-title-main" style="">중소오피스 관리 시스템 설계/기획 (오피스B 서비스)</span>
+    <span class="proj-period-badge" style="">2023.12 – 2024.09</span>
+  </div>
+  <div class="proj-body">
+    <div class="proj-left">
+      <div class="proj-metric-box">
+        <div class="pm-label" style="">핵심 성과</div>
+        <div class="pm-num" style="">4.42억</div>
+        <div class="pm-desc" style="">신규 매출 달성</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">문제 배경</div>
+        <div class="pf-text" style="">코로나19 이후 근무의 패러다임 변경으로 오피스 공실률이 급증하며 공유오피스 단일 사업 구조의 성장 한계에 직면. 중소형 오피스 시장으로의 전략적 진출 및 신규 매출원 확보 필요성 대두.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">가설</div>
+        <div class="pf-text" style="">공실율의 증가에 따른 공급자(임대인)와 임대비용이 부담스러운 수요자(임차인)의 간극을 해결한다면 신규 매출 10억을 추가달성 할 수 있을 것이다.</div>
+      </div>
+    </div>
+    <div class="proj-right">
+      <div class="proj-field">
+        <div class="pf-label" style="">Task (역할)</div>
+        <div class="pf-text" style="">MVP → 정식 제품 출시까지 사업 생애주기에 맞춘 시스템 구축. 오피스B 크루어드민(마스터 어드민) + 오피스B 앱(입주사 임직원용) PO로서 서비스 기획 및 프로젝트 관리 담당.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">해결방안</div>
+        <div class="pf-text" style="">고객 전화 인터뷰 분석 → 내부 유관부서 인터뷰 → 임대인/임차인이 체감하는 문제점 도출 → 프로젝트화(로드맵 설계, 프로젝트 계획 수립) → 플랫폼 기획 및 IoT·출입 시스템 연동 기획 → 스프린트 실행·백로그 관리 → 서비스 론칭</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">성과</div>
+        <div class="pf-text" style="">서비스 론칭 후 2024년 마감 매출 기준 4억 4,200만원 신규 매출 달성</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">회고</div>
+        <div class="pf-text" style="">최초 MVP 구현 범위에 대한 논의 단계에서 이해관계자와의 기대범위에 대한 차이가 있어 P0의 기능범위를 재설정 해야하는 이슈가 있었습니다. 인지 즉시 이슈업을 하고 로드맵을 재수정하여 론칭 일정을 준수할 수 있었으나 초기 비즈니스 목표의 Align의 중요성을 다시 실감할 수 있었습니다.</div>
+      </div>
+      <div class="proj-ref" id="proj01-ref">
+        <div class="pf-label" style="">참고자료 및 산출물</div>
+        <div class="pf-text" style="">
+          기사1 : https://www.asiatime.co.kr/article/20250701500072<br>
+          기사2 : https://www.edaily.co.kr/News/Read?newsId=02794566645415792&amp;mediaCodeNo=257&amp;OutLnkChk=Y
+        </div>
+        <!-- 이미지 업로드 영역 (최대 3장) -->
+        <div style="margin-top:10px; display:flex; align-items:center; gap:6px; margin-bottom:8px; flex-shrink:0;">
+          <span style="font-size:9px;letter-spacing:1.5px;color:rgba(91,111,166,0.8);text-transform:uppercase;font-weight:700;">산출물 이미지</span>
+          <span id="proj01-count" style="font-size:9px;color:rgba(255,255,255,0.3);">0 / 3</span>
+        </div>
+        <div id="proj01-img-area" style="display:flex; gap:10px; align-items:stretch; flex:1; min-height:0; justify-content:flex-start;">
+          <div id="proj01-slot-0" class="proj01-slot" onclick="proj01SlotClick(0)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.4);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.5);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj01-slot-1" class="proj01-slot" onclick="proj01SlotClick(1)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj01-slot-2" class="proj01-slot" onclick="proj01SlotClick(2)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <input type="file" id="proj01-file-input" accept="image/*" style="display:none;" onchange="proj01LoadImage(this)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── 공통 이미지 업로드 기능 (proj01~04 공유) ──
+var projTargetSlot = {};
+
+function proj01SlotClick(idx) { projSlotClick('proj01', idx); }
+
+function projSlotClick(pid, idx) {
+  const slot = document.getElementById(pid + '-slot-' + idx);
+  const existImg = slot.querySelector('img');
+  if (existImg) { projLightbox(existImg.src); return; }
+  projTargetSlot[pid] = idx;
+  document.getElementById(pid + '-file-input').click();
+}
+
+function proj01LoadImage(input) { projLoadImage('proj01', input); }
+
+function projLoadImage(pid, input) {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const idx = projTargetSlot[pid] || 0;
+    const slot = document.getElementById(pid + '-slot-' + idx);
+    slot.innerHTML = '';
+    slot.style.border = 'none';
+    slot.style.opacity = '1';
+    const img = document.createElement('img');
+    img.src = e.target.result;
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;';
+    img.onclick = (ev) => { ev.stopPropagation(); projLightbox(img.src); };
+    const del = document.createElement('button');
+    del.textContent = '×';
+    del.style.cssText = 'position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;color:#fff;font-size:11px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;';
+    del.onclick = (ev) => { ev.stopPropagation(); projClearSlot(pid, idx); };
+    slot.appendChild(img);
+    slot.appendChild(del);
+    projUpdateCount(pid);
+    projRefreshSlots(pid);
+  };
+  reader.readAsDataURL(input.files[0]);
+  input.value = '';
+}
+
+function projClearSlot(pid, idx) {
+  const slot = document.getElementById(pid + '-slot-' + idx);
+  slot.innerHTML = '<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg><span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>';
+  slot.style.border = '1.5px dashed rgba(91,111,166,0.25)';
+  projUpdateCount(pid);
+  projRefreshSlots(pid);
+}
+
+function projRefreshSlots(pid) {
+  let firstEmpty = -1;
+  for (let i = 0; i < 3; i++) {
+    const slot = document.getElementById(pid + '-slot-' + i);
+    if (!slot) continue;
+    const hasImg = !!slot.querySelector('img');
+    if (!hasImg) {
+      if (firstEmpty === -1) {
+        firstEmpty = i;
+        slot.style.opacity = '1';
+        slot.style.border = '1.5px dashed rgba(91,111,166,0.4)';
+      } else {
+        slot.style.opacity = '0.4';
+        slot.style.border = '1.5px dashed rgba(91,111,166,0.2)';
+      }
+    }
+  }
+}
+
+function projUpdateCount(pid) {
+  let count = 0;
+  for (let i = 0; i < 3; i++) {
+    const slot = document.getElementById(pid + '-slot-' + i);
+    if (slot && slot.querySelector('img')) count++;
+  }
+  const el = document.getElementById(pid + '-count');
+  if (el) {
+    el.textContent = count + ' / 3';
+    el.style.color = count === 3 ? 'rgba(91,111,166,0.9)' : 'rgba(255,255,255,0.3)';
+  }
+}
+
+function projLightbox(src) {
+  let lb = document.getElementById('proj-lb');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'proj-lb';
+    lb.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
+    lb.onclick = () => lb.style.display = 'none';
+    const lbImg = document.createElement('img');
+    lbImg.id = 'proj-lb-img';
+    lbImg.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,0.6);';
+    lb.appendChild(lbImg);
+    document.body.appendChild(lb);
+  }
+  document.getElementById('proj-lb-img').src = src;
+  lb.style.display = 'flex';
+}
+</script>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 06  PROJECT 02 — 멤버십몰
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 06 — PROJECT 02 / 멤버십몰</span>
+<div class="slide s-project">
+  <div class="proj-header">
+    <span class="proj-tag-badge" style="">PROJECT 02 · 스파크플러스</span>
+    <span class="proj-title-main" style="">멤버십몰(특가몰) 구축</span>
+    <span class="proj-period-badge" style="">2025.10 – 2026.02</span>
+  </div>
+  <div class="proj-body">
+    <div class="proj-left">
+      <div class="proj-metric-box">
+        <div class="pm-label" style="">핵심 성과</div>
+        <div class="pm-num" style="">-60%</div>
+        <div class="pm-desc" style="">개발 리소스 절감 / 예상 순이익 7,000만원</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">문제 배경</div>
+        <div class="pf-text" style="">임대사업의 특성상 초기 투자비용이 높아 '임대' 외 수익에 대한 수익 다양화 필요성이 대두.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">가설</div>
+        <div class="pf-text" style="">공유오피스를 이용하는 임차인의 서비스나 제품을 저렴한 가격으로 입주사 임직원에게 제공한다면 추가 수익을 창출할 수 있을 것이다. (초기 예상수익 : 7,000만원)</div>
+      </div>
+    </div>
+    <div class="proj-right">
+      <div class="proj-field">
+        <div class="pf-label" style="">Task (역할)</div>
+        <div class="pf-text" style="">마켓핏이 확인되지 않은 상태에서 진행하기 때문에 최소의 개발 리소스(기획, 디자인, 개발)를 투입할 전략을 도출하고 Mall 론칭까지 전체 총괄.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">해결방안</div>
+        <div class="pf-text" style="">투입 리소스 절감을 위해 헤드리스 커머스 솔루션 도입 결정 → 구현 범위/기능 확정 → 외주개발사 선정 → 스프린트 실행 → 직접 QA → 서비스 론칭(2026.03월)</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">성과</div>
+        <div class="pf-text" style="">인앱 커머스 구현 완료. 직접 개발 대비 60% 리소스·개발 기간 축소. (2026.03 오픈, 예상 연간 순이익 7,000만원 기대)</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">회고</div>
+        <div class="pf-text" style="">주어진 조건 속에서 제품 완성에 대한 성과를 거두었으나, 사업적 변수(파트너 계약 지연 등)를 아우르는 전방위적 프로젝트 관리(Project Steering)의 필요성을 깊이 깨달았습니다. 이를 계기로 현재는 제품 기획을 넘어 비즈니스 전반의 워크플로우를 최적화하는 데 집중하고 있습니다.</div>
+      </div>
+      <div class="proj-ref" id="proj02-ref">
+        <div class="pf-label" style="">참고자료 및 산출물</div>
+        <div class="pf-text" style="">기사 : https://www.mk.co.kr/news/all/12015598</div>
+        <div style="margin-top:10px; display:flex; align-items:center; gap:6px; margin-bottom:8px; flex-shrink:0;">
+          <span style="font-size:9px;letter-spacing:1.5px;color:rgba(91,111,166,0.8);text-transform:uppercase;font-weight:700;">산출물 이미지</span>
+          <span id="proj02-count" style="font-size:9px;color:rgba(255,255,255,0.3);">0 / 3</span>
+        </div>
+        <div id="proj02-img-area" style="display:flex; gap:10px; align-items:stretch; flex:1; min-height:0; justify-content:flex-start;">
+          <div id="proj02-slot-0" onclick="projSlotClick('proj02',0)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.4);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.5);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj02-slot-1" onclick="projSlotClick('proj02',1)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj02-slot-2" onclick="projSlotClick('proj02',2)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <input type="file" id="proj02-file-input" accept="image/*" style="display:none;" onchange="projLoadImage('proj02',this)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 07  PROJECT 03 — 하루배송
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 07 — PROJECT 03 / 하루배송</span>
+<div class="slide s-project">
+  <div class="proj-header">
+    <span class="proj-tag-badge" style="">PROJECT 03 · 브랜디</span>
+    <span class="proj-title-main" style="">여성 패션 플랫폼 최초 당일배송 서비스 론칭 (하루배송)</span>
+    <span class="proj-period-badge" style="">2020.03 – 2021.09</span>
+  </div>
+  <div class="proj-body">
+    <div class="proj-left">
+      <div class="proj-metric-box">
+        <div class="pm-label" style="">핵심 성과</div>
+        <div class="pm-num" style="">+3,000%</div>
+        <div class="pm-desc" style="">월 거래액 증가 / 이용자 480만명</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">문제 배경</div>
+        <div class="pf-text" style="">코로나19로 비대면 거래 급증하면서 온라인 패션 플랫폼 간 가격 경쟁 심화. 가격 외 차별화된 서비스의 필요성이 대두됨.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">가설</div>
+        <div class="pf-text" style="">주문 시점으로부터 배송을 받기까지의 시간을 단축할수록 고객의 긍정적 경험이 증가하고 이는 곧 매출증가와 서비스의 충성도로 이어질 것이다. (예상 월 거래액 증가분 : +1,000%)</div>
+      </div>
+    </div>
+    <div class="proj-right">
+      <div class="proj-field">
+        <div class="pf-label" style="">Task (역할)</div>
+        <div class="pf-text" style="">'하루배송' 서비스 론칭을 위한 구조설계 및 백오피스 기획. 브랜디와 자체 풀필먼트 시스템(FMS) 간 연동 기획 및 프로젝트 관리.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">해결방안</div>
+        <div class="pf-text" style="">주문 시점별 처리 시스템 정책 수립 → System flow 및 기능 기획 → 자체물류시스템(FMS) 연동 정책 수립 → 스프린트 구성 → 시스템 구축 → 서비스 론칭</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">성과</div>
+        <div class="pf-text" style="">2019년 3월 론칭을 기준으로 2022년 1월에는 월 거래액 3,000% 증가. 2022년 8월 기준 하루배송 이용자 수 480만명 달성.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">회고</div>
+        <div class="pf-text" style="">MVP에서 운영 자율성을 의도적으로 제한한 설계가 서비스 확장 단계에서 병목이 됐습니다. 초기 기획 시 운영팀의 유연한 대응 시나리오를 충분히 반영해야 한다는 점을 배웠고, 고도화 단계에서 이를 직접 개선했습니다.</div>
+      </div>
+      <div class="proj-ref" id="proj03-ref">
+        <div class="pf-label" style="">참고자료 및 산출물</div>
+        <div class="pf-text" style="">기사 : https://www.edaily.co.kr/News/Read?newsId=02286166632464056&amp;mediaCodeNo=257&amp;OutLnkChk=Y</div>
+        <div style="margin-top:10px; display:flex; align-items:center; gap:6px; margin-bottom:8px; flex-shrink:0;">
+          <span style="font-size:9px;letter-spacing:1.5px;color:rgba(91,111,166,0.8);text-transform:uppercase;font-weight:700;">산출물 이미지</span>
+          <span id="proj03-count" style="font-size:9px;color:rgba(255,255,255,0.3);">0 / 3</span>
+        </div>
+        <div id="proj03-img-area" style="display:flex; gap:10px; align-items:stretch; flex:1; min-height:0; justify-content:flex-start;">
+          <div id="proj03-slot-0" onclick="projSlotClick('proj03',0)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.4);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.5);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj03-slot-1" onclick="projSlotClick('proj03',1)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj03-slot-2" onclick="projSlotClick('proj03',2)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <input type="file" id="proj03-file-input" accept="image/*" style="display:none;" onchange="projLoadImage('proj03',this)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 08  PROJECT 04 — 재고 Zero
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 08 — PROJECT 04 / 재고 Zero</span>
+<div class="slide s-project">
+  <div class="proj-header">
+    <span class="proj-tag-badge" style="">PROJECT 04 · 브랜디</span>
+    <span class="proj-title-main" style="">슬로우무빙 재고 자동화 관리 시스템 기획 (재고 Zero 프로젝트)</span>
+    <span class="proj-period-badge" style="">2021.07 – 2021.09</span>
+  </div>
+  <div class="proj-body">
+    <div class="proj-left">
+      <div class="proj-metric-box">
+        <div class="pm-label" style="">핵심 성과</div>
+        <div class="pm-num" style="">-70%</div>
+        <div class="pm-desc" style="">악성 재고 감소율 / 운영 전 과정 자동화</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">문제 배경</div>
+        <div class="pf-text" style="">하루배송 도입 후 안전재고 발주 물량이 시즌·트렌드 변화로 슬로우무빙 재고로 누적. 물류센터 수용 한계 도달, 재고 관리 비용 급증. 단, 마케팅/운영 인력의 리소스 부족으로 전체 플로우가 자동으로 판매를 촉진해야하는 상황.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">가설</div>
+        <div class="pf-text" style="">사계절이 뚜렷한 한국의 특성상 시즌성 상품의 경우 시즌이 다시 도래하기까지(최소 7개월)의 비용을 추가 투입하는 것보다 원가의 마진율 10%까지 할인율을 적용하여 시즌off 기획전으로 운영하면 영업이익율이 개선될 것이다. (악성 재고 보유량 기준 -50% 목표)</div>
+      </div>
+    </div>
+    <div class="proj-right">
+      <div class="proj-field">
+        <div class="pf-label" style="">Task (역할)</div>
+        <div class="pf-text" style="">판매량이 저조한 상품 선별·기획전 전시·할인·품절처리 로직 설계 및 시스템 Flow 기획, 프로젝트 관리.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">해결방안</div>
+        <div class="pf-text" style="">일정 기간 내 저판매 상품 자동 선별 로직 설계 → 판매 기간에 따른 할인율 자동 적용 규칙 수립 → 상시 기획전 자동 전시·품절 처리 플로우 기획 → 시스템 개발 → 배포 → 성과 측정</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">성과</div>
+        <div class="pf-text" style="">시즌성 악성 재고 70% 감소 달성. MD의 수동 전시·품절 처리 오퍼레이션을 완전 자동화하여 운영 리소스를 대폭 절감, 창고 회전율 개선.</div>
+      </div>
+      <div class="proj-field">
+        <div class="pf-label" style="">회고</div>
+        <div class="pf-text" style="">운영 자동화는 단순 리소스 절감을 넘어 비즈니스 비용 구조 자체를 개선할 수 있다는 점을 체감했습니다. 더불어 자동화 로직 설계 시에는 예외 케이스(특가 상품, 시즌 한정 등)를 사전에 구체적으로 정의하는 것이 안정적인 시스템 운영의 핵심임을 배웠습니다.</div>
+      </div>
+      <div class="proj-ref" id="proj04-ref">
+        <div class="pf-label" style="">참고자료 및 산출물</div>
+        <div style="margin-top:6px; display:flex; align-items:center; gap:6px; margin-bottom:8px; flex-shrink:0;">
+          <span style="font-size:9px;letter-spacing:1.5px;color:rgba(91,111,166,0.8);text-transform:uppercase;font-weight:700;">산출물 이미지</span>
+          <span id="proj04-count" style="font-size:9px;color:rgba(255,255,255,0.3);">0 / 3</span>
+        </div>
+        <div id="proj04-img-area" style="display:flex; gap:10px; align-items:stretch; flex:1; min-height:0; justify-content:flex-start;">
+          <div id="proj04-slot-0" onclick="projSlotClick('proj04',0)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.4);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.6)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.5);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj04-slot-1" onclick="projSlotClick('proj04',1)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <div id="proj04-slot-2" onclick="projSlotClick('proj04',2)" style="flex:0 0 calc(33.33% - 7px);border:1.5px dashed rgba(91,111,166,0.25);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;opacity:0.4;transition:border-color 0.2s;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none"><line x1="10" y1="4" x2="10" y2="16" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="rgba(91,111,166,0.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="font-size:10px;color:rgba(91,111,166,0.4);margin-top:6px;">이미지 추가</span>
+          </div>
+          <input type="file" id="proj04-file-input" accept="image/*" style="display:none;" onchange="projLoadImage('proj04',this)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 09  나의 제품 철학
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 09 — 나의 제품 철학</span>
+<div class="slide s-phil">
+  <div class="eye-blue" style="">Philosophy</div>
+  <div class="stitle" style="">나의 제품 철학</div>
+  <div class="phil-grid">
+    <div class="phil-card">
+      <div class="pn" style="">PHILOSOPHY 01</div>
+      <div class="pt" style="">'문제'는 해결해야 할 대상</div>
+      <div class="pd" style="">비즈니스에서 발생하는 피상적인 문제를 내·외부 고객의 인터뷰를 통해 구체적으로 정의하고 해결 대상으로 바라봅니다. 문제의 본질에 집중하여 해결책을 고민하고 제품, 시스템, 프로세스를 통해 개선합니다.</div>
+    </div>
+    <div class="phil-card">
+      <div class="pn" style="">PHILOSOPHY 02</div>
+      <div class="pt" style="">확장성을 고려한 초안 설계</div>
+      <div class="pd" style="">비즈니스의 궁극적 지향점에 대해 깊게 Align하고 확장 가능한 구조로 기획·설계합니다.</div>
+    </div>
+    <div class="phil-card">
+      <div class="pn" style="">PHILOSOPHY 03</div>
+      <div class="pt" style="">성과는 숫자로 말한다</div>
+      <div class="pd" style="">매출 기여, 전환율, 운영 리소스 절감 등 모든 기획의 결과를 수치로 검증하며 정성적 성과도 정량화할 방법을 찾습니다.</div>
+    </div>
+    <div class="phil-card">
+      <div class="pn" style="">PHILOSOPHY 04</div>
+      <div class="pt" style="">이해관계자를 One-team으로</div>
+      <div class="pd" style="">재무, 영업, 운영, 개발 등 다양한 이해관계자의 언어로 소통합니다. 공통 목표에 대한 지향점을 공유하며 비효율을 개선하고 갈등을 조율하며 목표를 완수합니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 10  마무리 + Contact
+════════════════════════════════════════════ -->
+<span class="slide-label">SLIDE 10 — 마무리</span>
+<div class="slide s-closing">
+  <div class="closing-left">
+    <div class="closing-eye" style="">Closing</div>
+    <div class="closing-text" style="">
+      특정 분야에 국한하지 않고 비즈니스가 해결해야할 문제에 집중하여 B2C·B2B 다양한 도메인에서 서비스를 기획하고 제품을 이끌어왔습니다.<br>
+      비즈니스의 본질적인 문제를 제품으로 풀고, 내·외부 고객의 가치를 실현합니다.<br><br>
+      시대적 변화로 인해 협업의 대상과 방식이 바뀌더라도 비즈니스 문제를 정의하고 해결하는 본질은 변함이 없습니다.<br>
+      더불어 빠른 변화 속에는 반드시 확장적 설계와 유연한 사고가 필수입니다.<br><br>
+      앞으로도 본질을 통찰하는 관점과 실행력을 바탕으로 더 나은 서비스와 지속 가능한 성과를 만들어가겠습니다.
+    </div>
+  </div>
+  <div class="closing-divider"></div>
+  <div class="closing-right">
+    <div class="eye" style="">Contact</div>
+    <div class="contact-item">
+      <div class="cl" style="">E-MAIL</div>
+      <div class="cv" style="">blueeunhwa@gmail.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="cl" style="">TEL</div>
+      <div class="cv" style="">010-3443-3830</div>
+    </div>
+    <div class="tools-section">
+      <div class="tl" style="">TOOLS &amp; SKILLS</div>
+      <div class="tools-wrap">
+        <span class="t-pill" style="">Figma</span>
+        <span class="t-pill" style="">Notion</span>
+        <span class="t-pill" style="">Jira</span>
+        <span class="t-pill" style="">Google Analytics</span>
+        <span class="t-pill" style="">Amplitude</span>
+        <span class="t-pill" style="">Slack</span>
+        <span class="t-pill" style="">Jandi</span>
+        <span class="t-pill" style="">Claude AI</span>
+        <span class="t-pill" style="">Claude AI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ 인라인 편집 기능 ═══ -->
+
+<script>
+let originalStates = new Map();
+let selectedEl = null;
+let resizeOverlay = null;
+
+// 모든 슬라이드 내 텍스트 요소를 동적으로 수집
+function collectEditableEls() {
+  const result = [];
+  document.querySelectorAll('.slide *').forEach(el => {
+    // 직접 텍스트 노드가 있는 leaf-ish 요소만 선택
+    const hasDirectText = Array.from(el.childNodes).some(
+      n => n.nodeType === 3 && n.textContent.trim().length > 0
+    );
+    const tag = el.tagName.toLowerCase();
+    const skip = ['script','style','svg','img','button','input'];
+    if (hasDirectText && !skip.includes(tag) && !el.closest('#edit-toolbar')) {
+      result.push(el);
+    }
+  });
+  return result;
+}
+const EDITABLE_SELECTORS = []; // 사용 안 함 (동적 수집으로 대체)
+
+/* ── 리사이즈 오버레이 ── */
+const HANDLES = ['n','s','e','w','nw','ne','sw','se'];
+const CURSORS = { n:'ns-resize', s:'ns-resize', e:'ew-resize', w:'ew-resize',
+                  nw:'nw-resize', ne:'ne-resize', sw:'sw-resize', se:'se-resize' };
+
+function createOverlay() {
+  const ov = document.createElement('div');
+  ov.id = 'resize-overlay';
+  ov.style.cssText = `position:fixed;pointer-events:none;z-index:9997;box-sizing:border-box;
+    border:1.5px solid rgba(91,111,166,0.9);background:transparent;`;
+
+  HANDLES.forEach(dir => {
+    const h = document.createElement('div');
+    h.dataset.dir = dir;
+    h.style.cssText = `position:absolute;width:8px;height:8px;background:#5B6FA6;
+      border:1px solid #fff;border-radius:1px;pointer-events:all;cursor:${CURSORS[dir]};`;
+    positionHandle(h, dir);
+    h.addEventListener('mousedown', startResize);
+    ov.appendChild(h);
+  });
+  document.body.appendChild(ov);
+  return ov;
+}
+
+function positionHandle(h, dir) {
+  const pct = (v) => v + '%';
+  const m = '-4px';
+  const mid = 'calc(50% - 4px)';
+  const map = {
+    nw: {top:m, left:m}, n: {top:m, left:mid}, ne: {top:m, right:m},
+    w:  {top:mid, left:m},                       e:  {top:mid, right:m},
+    sw: {bottom:m, left:m}, s: {bottom:m, left:mid}, se: {bottom:m, right:m}
+  };
+  Object.assign(h.style, map[dir]);
+}
+
+function updateOverlay(el) {
+  if (!resizeOverlay) resizeOverlay = createOverlay();
+  const r = el.getBoundingClientRect();
+  Object.assign(resizeOverlay.style, {
+    top: r.top + 'px', left: r.left + 'px',
+    width: r.width + 'px', height: r.height + 'px',
+    pointerEvents: 'none'
+  });
+  resizeOverlay.querySelectorAll('[data-dir]').forEach(h => h.style.pointerEvents = 'all');
+  resizeOverlay.style.display = 'block';
+}
+
+function hideOverlay() {
+  if (resizeOverlay) resizeOverlay.style.display = 'none';
+}
+
+/* ── 리사이즈 드래그 ── */
+function startResize(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  if (!selectedEl) return;
+
+  const dir = e.currentTarget.dataset.dir;
+  const el = selectedEl;
+  const startX = e.clientX, startY = e.clientY;
+  const startRect = el.getBoundingClientRect();
+  const computed = window.getComputedStyle(el);
+  const startW = parseFloat(computed.width);
+  const startH = parseFloat(computed.height);
+  const startFS = parseFloat(computed.fontSize);
+
+  // 원본 저장
+  if (!originalStates.has(el)) saveOriginal(el);
+
+  // 크기 제약 해제
+  el.style.overflow = 'hidden';
+  el.style.maxWidth = 'none';
+  el.style.minWidth = '0';
+  // 현재 실제 렌더 크기를 width로 고정 (flex/grid 영향 차단)
+  const curRect = el.getBoundingClientRect();
+  if (!el.style.width) el.style.width = curRect.width + 'px';
+  if (!el.style.height) el.style.height = curRect.height + 'px';
+
+  const onMove = mv => {
+    const dx = mv.clientX - startX;
+    const dy = mv.clientY - startY;
+    if (dir.includes('e')) el.style.width  = Math.max(40, startW + dx) + 'px';
+    if (dir.includes('w')) el.style.width  = Math.max(40, startW - dx) + 'px';
+    if (dir.includes('s')) el.style.height = Math.max(16, startH + dy) + 'px';
+    if (dir.includes('n')) el.style.height = Math.max(16, startH - dy) + 'px';
+    updateOverlay(el);
+  };
+
+  const onUp = () => {
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    updateOverlay(el);
+  };
+
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
+
+/* ── 선택 ── */
+function saveOriginal(el) {
+  originalStates.set(el, {
+    html: el.innerHTML,
+    width: el.style.width, height: el.style.height,
+    maxWidth: el.style.maxWidth, minWidth: el.style.minWidth,
+    fontSize: el.style.fontSize, overflow: el.style.overflow,
+  });
+}
+
+function selectEl(el) {
+  if (selectedEl === el) return;
+  selectedEl = el;
+  updateOverlay(el);
+}
+
+/* ── 텍스트 편집 초기화 ── */
+function initEditable() {
+  const els = collectEditableEls();
+  els.forEach(el => {
+    el.setAttribute('contenteditable', 'true');
+    el.setAttribute('spellcheck', 'false');
+    el.style.outline = 'none';
+    el.style.transition = 'background 0.12s';
+    el.style.cursor = 'text';
+
+    el.addEventListener('mouseenter', () => {
+      if (selectedEl !== el) el.style.background = 'rgba(91,111,166,0.13)';
+    });
+    el.addEventListener('mouseleave', () => {
+      if (document.activeElement !== el && selectedEl !== el)
+        el.style.background = '';
+    });
+    el.addEventListener('mousedown', () => {
+      selectEl(el);
+      if (!originalStates.has(el)) saveOriginal(el);
+    });
+    el.addEventListener('focus', () => {
+      el.style.background = 'rgba(91,111,166,0.18)';
+      selectEl(el);
+    });
+    el.addEventListener('blur', () => {
+      if (selectedEl !== el) el.style.background = '';
+    });
+  });
+
+  // 빈 곳 클릭 시 선택 해제
+  document.addEventListener('mousedown', e => {
+    const isEditable = e.target.getAttribute?.('contenteditable') === 'true';
+    const isHandle = e.target.closest?.('#resize-overlay');
+    const isToolbar = e.target.closest?.('#edit-toolbar');
+    if (!isEditable && !isHandle && !isToolbar) {
+      selectedEl = null;
+      hideOverlay();
+    }
+  }, true);
+
+  // 스크롤 시 오버레이 위치 갱신
+  window.addEventListener('scroll', () => { if (selectedEl) updateOverlay(selectedEl); });
+}
+
+/* ── 저장 ── */
+function saveHTML() {
+  const btn = document.getElementById('btn-save');
+  btn.textContent = '저장 중...';
+  btn.disabled = true;
+
+  hideOverlay();
+  const clone = document.documentElement.cloneNode(true);
+  clone.querySelectorAll('[contenteditable]').forEach(el => {
+    el.removeAttribute('contenteditable');
+    el.removeAttribute('spellcheck');
+    el.style.cursor = '';
+    el.style.outline = '';
+    el.style.background = '';
+    el.style.transition = '';
+  });
+  clone.querySelector('#edit-toolbar')?.remove();
+  clone.querySelector('#resize-overlay')?.remove();
+
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+
+  fetch('/__save__', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ html })
+  })
+  .then(r => r.json())
+  .then(() => {
+    btn.textContent = '저장 완료';
+    btn.style.background = '#3DAA8A';
+    setTimeout(() => {
+      btn.textContent = '저장';
+      btn.style.background = '#5B6FA6';
+      btn.disabled = false;
+    }, 1800);
+  })
+  .catch(() => {
+    btn.textContent = '저장 실패';
+    btn.style.background = '#C0392B';
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = '저장'; btn.style.background = '#5B6FA6'; }, 2000);
+  });
+}
+
+/* ── 취소 ── */
+function cancelEdit() {
+  originalStates.forEach((state, el) => {
+    if (state.html !== undefined) el.innerHTML = state.html;
+    el.style.width = state.width || '';
+    el.style.height = state.height || '';
+    el.style.maxWidth = state.maxWidth || '';
+    el.style.minWidth = state.minWidth || '';
+    el.style.fontSize = state.fontSize || '';
+    el.style.overflow = state.overflow || '';
+  });
+  originalStates.clear();
+  hideOverlay();
+}
+
+initEditable();
+</script>
+
+
+</body></html>
