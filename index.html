@@ -560,15 +560,16 @@ function projLoadImage(pid, input) {
     // 이미지 로드 후 초기 위치 왼쪽 정렬
     img.onload = () => { img.style.left = '0px'; };
     // 좌우 드래그로 위치 조절
+    img.dataset.dragged = 'false';
     img.addEventListener('mousedown', (e) => {
       if (e.button !== 0) return;
       e.preventDefault(); e.stopPropagation();
       const startX = e.clientX;
       const startOffset = parseFloat(img.dataset.offsetX) || 0;
       img.style.cursor = 'grabbing';
-      let moved = false;
+      img.dataset.dragged = 'false';
       const onMove = (e) => {
-        moved = true;
+        img.dataset.dragged = 'true';
         const slotW = img.parentElement.offsetWidth;
         const imgW = img.offsetWidth;
         const maxOffset = 0;
@@ -581,13 +582,17 @@ function projLoadImage(pid, input) {
         img.style.cursor = 'grab';
         document.removeEventListener('mousemove', onMove);
         document.removeEventListener('mouseup', onUp);
-        if (moved) savePortfolioHTML();
+        if (img.dataset.dragged === 'true') savePortfolioHTML();
       };
       document.addEventListener('mousemove', onMove);
       document.addEventListener('mouseup', onUp);
     });
     // 클릭(드래그 아닐 때)은 라이트박스
-    img.addEventListener('click', (ev) => { ev.stopPropagation(); projLightbox(img.src); });
+    img.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      if (img.dataset.dragged === 'true') { img.dataset.dragged = 'false'; return; }
+      projLightbox(img.src);
+    });
     const del = document.createElement('button');
     del.textContent = '×';
     del.style.cssText = 'position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;color:#fff;font-size:11px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;';
