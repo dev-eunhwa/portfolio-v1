@@ -200,12 +200,12 @@
   .proj-metric-box .pm-num { font-size: 32px; font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; }
   .proj-metric-box .pm-desc { font-size: 12px; color: rgba(255,255,255,0.7); }
   .proj-field { background: rgba(255,255,255,0.04); border-radius: 3px; padding: 8px 12px; }
-  .proj-field .pf-label { font-size: 10px; letter-spacing: 2px; color: var(--blue); opacity: 0.9; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
-  .proj-field .pf-text { font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+  .proj-field .pf-label { font-size: 11px; letter-spacing: 2px; color: #a0afd8; opacity: 1; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+  .proj-field .pf-text { font-size: 13.5px; color: rgba(255,255,255,0.65); line-height: 1.65; }
   .proj-field .pf-text a { color: var(--blue); }
   .proj-ref { background: rgba(91,111,166,0.15); border-radius: 3px; padding: 10px 14px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
-  .proj-ref .pf-label { font-size: 10px; letter-spacing: 2px; color: var(--blue); opacity: 0.9; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
-  .proj-ref .pf-text { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.6; word-break: break-all; }
+  .proj-ref .pf-label { font-size: 11px; letter-spacing: 2px; color: #a0afd8; opacity: 1; margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+  .proj-ref .pf-text { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.6; word-break: break-all; }
 
   /* ─────────────────────────────────────────
      SLIDE 09  제품 철학
@@ -228,7 +228,7 @@
   }
   .phil-card .pn { font-size: 9px; letter-spacing: 3px; color: var(--blue); font-weight: 700; }
   .phil-card .pt { font-size: 15px; font-weight: 700; color: var(--navy); }
-  .phil-card .pd { font-size: 12px; color: #5A6270; line-height: 1.75; }
+  .phil-card .pd { font-size: 15px; color: #8e97a8; line-height: 1.75; }
 
   /* ─────────────────────────────────────────
      SLIDE 10  마무리 + Contact
@@ -243,7 +243,7 @@
   }
   .closing-left { display: flex; flex-direction: column; justify-content: center; }
   .closing-eye { font-size: 10px; letter-spacing: 4px; color: var(--blue); text-transform: uppercase; margin-bottom: 20px; }
-  .closing-text { font-size: 14px; color: var(--beige); line-height: 1.9; opacity: 0.85; }
+  .closing-text { font-size: 16px; color: var(--beige); line-height: 1.9; opacity: 0.85; }
   .closing-divider { background: rgba(255,255,255,0.07); align-self: stretch; }
   .closing-right { display: flex; flex-direction: column; gap: 16px; }
   .closing-right .eye { margin-bottom: 4px; }
@@ -987,11 +987,7 @@ document.addEventListener('DOMContentLoaded', initSlotResize);
   <div class="closing-left">
     <div class="closing-eye" style="">Closing</div>
     <div class="closing-text" style="">
-      특정 분야에 국한하지 않고 비즈니스가 해결해야할 문제에 집중하여 B2C·B2B 다양한 도메인에서 서비스를 기획하고 제품을 이끌어왔습니다.<br>
-      비즈니스의 본질적인 문제를 제품으로 풀고, 내·외부 고객의 가치를 실현합니다.<br><br>
-      시대적 변화로 인해 협업의 대상과 방식이 바뀌더라도 비즈니스 문제를 정의하고 해결하는 본질은 변함이 없습니다.<br>
-      더불어 빠른 변화 속에는 반드시 확장적 설계와 유연한 사고가 필수입니다.<br><br>
-      앞으로도 본질을 통찰하는 관점과 실행력을 바탕으로 더 나은 서비스와 지속 가능한 성과를 만들어가겠습니다.
+      비즈니스 문제를 정의하고 제품으로 풀어내는 본질은 시대가 변해도 변하지 않는다고 생각합니다.<div><div>B2B와 B2C 도메인을 넘나들며 쌓아온 경험을 바탕으로, 유연한 사고와 확장적 설계, 깊이 있는 통찰과 분석 역량을 키워왔습니다.&nbsp;</div><div>본질에 집중하는 통찰과 결과를 만드는 실행력과 비즈니스의 영속성을 고민하는 파트너가 되겠습니다.</div></div><div><br></div><div>감사합니다.</div>
     </div>
   </div>
   <div class="closing-divider"></div>
@@ -1270,5 +1266,144 @@ function cancelEdit() {
 initEditable();
 </script>
 
+<!-- ═══ PPT / PDF 내보내기 ═══ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script>
+// 내보내기 버튼 UI
+(function() {
+  const btn = document.createElement('div');
+  btn.id = 'export-btn';
+  btn.innerHTML = '⬇ 내보내기';
+  btn.style.cssText = `
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: #5b6fa6; color: #fff; font-size: 13px; font-weight: 600;
+    padding: 10px 18px; border-radius: 8px; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4); user-select: none;
+    font-family: 'Pretendard', sans-serif;
+  `;
+  document.body.appendChild(btn);
+
+  // 메뉴
+  const menu = document.createElement('div');
+  menu.id = 'export-menu';
+  menu.style.cssText = `
+    position: fixed; bottom: 66px; right: 24px; z-index: 9999;
+    background: #1e1e2e; border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; overflow: hidden; display: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  `;
+  menu.innerHTML = `
+    <div class="exp-item" data-type="pptx">📊 PPT로 내보내기</div>
+    <div class="exp-item" data-type="pdf">📄 PDF로 내보내기</div>
+  `;
+  const style = document.createElement('style');
+  style.textContent = `.exp-item { padding: 11px 20px; color: #e8e0d5; font-size: 13px; cursor: pointer; font-family: 'Pretendard', sans-serif; } .exp-item:hover { background: rgba(91,111,166,0.3); }`;
+  document.head.appendChild(style);
+  document.body.appendChild(menu);
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  });
+  document.addEventListener('click', () => { menu.style.display = 'none'; });
+
+  menu.addEventListener('click', (e) => {
+    const type = e.target.dataset.type;
+    if (!type) return;
+    menu.style.display = 'none';
+    if (type === 'pptx') exportPPTX();
+    if (type === 'pdf') exportPDF();
+  });
+})();
+
+// 슬라이드 목록 (DOM 순서대로)
+function getSlides() {
+  return Array.from(document.querySelectorAll('.slide'));
+}
+
+// 진행 토스트
+function showProgress(msg) {
+  let t = document.getElementById('exp-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'exp-toast';
+    t.style.cssText = 'position:fixed;bottom:80px;right:24px;z-index:99999;background:#222;color:#e8e0d5;font-size:12px;padding:8px 16px;border-radius:6px;font-family:Pretendard,sans-serif;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.display = 'block';
+}
+function hideProgress() {
+  const t = document.getElementById('exp-toast');
+  if (t) t.style.display = 'none';
+}
+
+// 슬라이드 캡처 (1280×720 기준)
+async function captureSlides() {
+  const slides = getSlides();
+  const images = [];
+  for (let i = 0; i < slides.length; i++) {
+    showProgress(`캡처 중... ${i + 1} / ${slides.length}`);
+    const canvas = await html2canvas(slides[i], {
+      scale: 1,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      width: 1280,
+      height: 720,
+      windowWidth: 1280,
+      windowHeight: 720,
+    });
+    images.push(canvas.toDataURL('image/jpeg', 0.95));
+  }
+  return images;
+}
+
+// PPTX 내보내기
+async function exportPPTX() {
+  try {
+    const images = await captureSlides();
+    showProgress('PPT 생성 중...');
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_16x9';
+    images.forEach((img) => {
+      const slide = pptx.addSlide();
+      slide.addImage({ data: img, x: 0, y: 0, w: '100%', h: '100%' });
+    });
+    await pptx.writeFile({ fileName: '포트폴리오_조은화.pptx' });
+    hideProgress();
+    showSaveToast('PPT 저장 완료!');
+  } catch (err) {
+    hideProgress();
+    alert('PPT 내보내기 실패: ' + err.message);
+  }
+}
+
+// PDF 내보내기 (브라우저 인쇄 활용)
+async function exportPDF() {
+  try {
+    const images = await captureSlides();
+    showProgress('PDF 준비 중...');
+    const win = window.open('', '_blank');
+    win.document.write(`<html><head><style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #000; }
+      img { display: block; width: 100vw; height: 100vh; object-fit: contain; page-break-after: always; }
+      @media print { img { page-break-after: always; } }
+    </style></head><body>`);
+    images.forEach(src => {
+      win.document.write(`<img src="${src}">`);
+    });
+    win.document.write('</body></html>');
+    win.document.close();
+    hideProgress();
+    setTimeout(() => { win.print(); }, 800);
+  } catch (err) {
+    hideProgress();
+    alert('PDF 내보내기 실패: ' + err.message);
+  }
+}
+</script>
 
 </body></html>
